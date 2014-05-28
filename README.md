@@ -32,6 +32,17 @@ Round the result to `[number]` decimal places. Default: 2
 23.582609
 ```
 
+#### -d, --empty_decimals
+
+By default, integers are returned without a decimal point and two trailing zeroes, even though values are calculated as floating point numbers and rounded to two decimal places.
+
+Use this flag if you *want* two empty decimal places to be returned.
+
+```
+~ python ratio-calculator.py 2 4 ? 10 -d
+5.00
+```
+
 #### -v, --verbose
 
 Instead of just returning the missing number, return the entire ratio as a string with the missing number plugged in.

@@ -20,6 +20,13 @@ parser.add_argument('-r',
                     default=2,
                     help='How many decimal places to which the result will be rounded (up). Default: 2')
 
+
+parser.add_argument('-d',
+                    '--empty_decimals',
+                    action='store_true',
+                    default=False,
+                    help='Includes the decimal point and trailing zeroes in an integer. Off by default. E.g.: 5.00.')
+
 parser.add_argument('-v',
                     '--verbose',
                     action='store_true',
@@ -38,10 +45,14 @@ arguments = parser.parse_args()
 a, b, c, d = arguments.numbers
 
 # Round to the decimal specified in the argument.
-# Remove trailing zero and decimal if it's just an integer.
 def round_to_specified_decimal(number):
     result = ('%.' + str(arguments.round) + 'f') % number
-    return result.rstrip('0').rstrip('.')
+
+    # Remove trailing zero and decimal if it's just an integer, unless otherwise flagged.
+    if arguments.empty_decimals:
+        return result
+    else:
+        return result.rstrip('0').rstrip('.')
 
 # Calculate value of missing number.
 def calculate_ratio_via_multiplication(x, y, z):
