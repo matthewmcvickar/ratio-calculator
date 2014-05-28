@@ -38,38 +38,41 @@ arguments = parser.parse_args()
 a, b, c, d = arguments.numbers
 
 # Round to the decimal specified in the argument.
-def round_to_specified_decimal(number):
-    return round(number, arguments.round)
-
 # Remove trailing zero and decimal if it's just an integer.
-def remove_trailing_zero(number):
-    return str(number).rstrip('0').rstrip('.')
+def round_to_specified_decimal_and_trim_trailing_zero(number):
+    number = round(number, arguments.round)
+    number = str(number).rstrip('0').rstrip('.')
+    return number
+
+def calculate_ratio_via_multiplication(x, y, z):
+    result = float(x)*(float(y)/float(z))
+    return round_to_specified_decimal_and_trim_trailing_zero(result)
+
+def calculate_ratio_via_division(x, y, z):
+    result = float(x)/(float(y)/float(z))
+    return round_to_specified_decimal_and_trim_trailing_zero(result)
 
 # Find which of the four numbers is missing.
 for index, number in enumerate(arguments.numbers):
 
     # Check for which part of the series isn't a number.
-    if not re.search('[0-9]+', number, re.M):
+    if not re.search('[0-9]+', number):
 
         # Perform the appropriate calculation.
         if index == 0:
-            result = float(b)*(float(c)/float(d))
-            result = remove_trailing_zero(round_to_specified_decimal(result))
+            result = calculate_ratio_via_multiplication(b, c, d);
             verbose_result = '[' + str(result) + ']' + '/' + b + ' = ' + c + '/' + d
 
         elif index == 1:
-            result = float(a)/(float(c)/float(d))
-            result = remove_trailing_zero(round_to_specified_decimal(result))
+            result = calculate_ratio_via_division(a, c, d);
             verbose_result = a + '/' + '[' + str(result) + ']' + ' = ' + c + '/' + d
 
         elif index == 2:
-            result = float(d)*(float(a)/float(b))
-            result = remove_trailing_zero(round_to_specified_decimal(result))
+            result = calculate_ratio_via_multiplication(d, a, b);
             verbose_result = a + '/' + b + ' = ' + '[' + str(result) + ']' + '/' + d
 
         elif index == 3:
-            result = float(c)/(float(a)/float(b))
-            result = remove_trailing_zero(round_to_specified_decimal(result))
+            result = calculate_ratio_via_division(c, a, b);
             verbose_result = a + '/' + b + ' = ' + c + '/' + '[' + str(result) + ']'
 
 # If the --without_newline flag is turned on, return the result without a newline.
