@@ -39,18 +39,17 @@ a, b, c, d = arguments.numbers
 
 # Round to the decimal specified in the argument.
 # Remove trailing zero and decimal if it's just an integer.
-def round_to_specified_decimal_and_trim_trailing_zero(number):
-    number = round(number, arguments.round)
-    number = str(number).rstrip('0').rstrip('.')
-    return number
+def round_to_specified_decimal(number):
+    result = ('%.' + str(arguments.round) + 'f') % number
+    return result.rstrip('0').rstrip('.')
 
 def calculate_ratio_via_multiplication(x, y, z):
     result = float(x)*(float(y)/float(z))
-    return round_to_specified_decimal_and_trim_trailing_zero(result)
+    return round_to_specified_decimal(result)
 
 def calculate_ratio_via_division(x, y, z):
     result = float(x)/(float(y)/float(z))
-    return round_to_specified_decimal_and_trim_trailing_zero(result)
+    return round_to_specified_decimal(result)
 
 # Find which of the four numbers is missing.
 for index, number in enumerate(arguments.numbers):
