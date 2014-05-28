@@ -12,14 +12,11 @@ Give numeric arguments in a series of three numbers with a `?`, `x`, or **any** 
 Solve for x: 2/4 = x/10
 
 ```
-python ratio-calculator.py 2 4 ? 10
-```
-
-Returns:
-
-```
+~ python ratio-calculator.py 2 4 ? 10
 5
 ```
+
+Two decimal places are included in default usage. Trailing zeroes and decimal points in the case of integers like the `5` above will be trimmed. See the `-r` flag below to change the number of included decimal places.
 
 ### Flags
 
