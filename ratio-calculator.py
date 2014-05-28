@@ -43,6 +43,7 @@ def round_to_specified_decimal(number):
     result = ('%.' + str(arguments.round) + 'f') % number
     return result.rstrip('0').rstrip('.')
 
+# Calculate value of missing number.
 def calculate_ratio_via_multiplication(x, y, z):
     result = float(x)*(float(y)/float(z))
     return round_to_specified_decimal(result)
@@ -50,6 +51,14 @@ def calculate_ratio_via_multiplication(x, y, z):
 def calculate_ratio_via_division(x, y, z):
     result = float(x)/(float(y)/float(z))
     return round_to_specified_decimal(result)
+
+# Add brackets around text.
+def bracket(text):
+    return '[' + str(text) + ']'
+
+# Return the equation with the result included (in brackets).
+def verbose_result(w, x, y, z):
+    return w + '/' + x + ' = ' + y + '/' + z
 
 # Find which of the four numbers is missing.
 for index, number in enumerate(arguments.numbers):
@@ -59,31 +68,33 @@ for index, number in enumerate(arguments.numbers):
 
         # Perform the appropriate calculation.
         if index == 0:
-            result = calculate_ratio_via_multiplication(b, c, d);
-            verbose_result = '[' + str(result) + ']' + '/' + b + ' = ' + c + '/' + d
+            result = calculate_ratio_via_multiplication(b, c, d)
+            verbose_result = verbose_result(bracket(result), b, c, d)
 
         elif index == 1:
-            result = calculate_ratio_via_division(a, c, d);
-            verbose_result = a + '/' + '[' + str(result) + ']' + ' = ' + c + '/' + d
+            result = calculate_ratio_via_division(a, c, d)
+            verbose_result = verbose_result(a, bracket(result), c, d)
 
         elif index == 2:
-            result = calculate_ratio_via_multiplication(d, a, b);
-            verbose_result = a + '/' + b + ' = ' + '[' + str(result) + ']' + '/' + d
+            result = calculate_ratio_via_multiplication(d, a, b)
+            verbose_result = verbose_result(a, b, bracket(result), d)
 
         elif index == 3:
-            result = calculate_ratio_via_division(c, a, b);
-            verbose_result = a + '/' + b + ' = ' + c + '/' + '[' + str(result) + ']'
+            result = calculate_ratio_via_division(c, a, b)
+            verbose_result = verbose_result(a, b, c, bracket(result))
 
-# If the --without_newline flag is turned on, return the result without a newline.
+# If the --without_newline flag is turned on, return the result without a newline using sys.stdout.
 def print_with_or_without_newline(data):
     if arguments.without_newline:
         sys.stdout.write(data)
     else:
         print(data)
 
-# If verbose output was requested, give it. If not, just give the number.
-# Use sys.stdout to avoid the newline that would otherwise be printed in the output.
-if arguments.verbose:
-    print_with_or_without_newline(verbose_result)
-else:
-    print_with_or_without_newline(result)
+# Print the results to the screen.
+def print_result(just_the_missing_number, the_entire_equation):
+    if arguments.verbose:
+        print_with_or_without_newline(the_entire_equation)
+    else:
+        print_with_or_without_newline(just_the_missing_number)
+
+print_result(result, verbose_result)
