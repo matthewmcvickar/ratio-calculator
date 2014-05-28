@@ -5,7 +5,7 @@ Need to find the missing value in a ratio? This Python script will help you do t
 
 ## Usage
 
-Give numeric arguments in a series of three numbers with either `?`, `x`, or **any** non-number to indicate the missing value.
+Give numeric arguments in a series of three numbers with a `?`, `x`, or **any** non-number to indicate the missing value.
 
 ### Example
 
