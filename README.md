@@ -49,7 +49,7 @@ Instead of just returning the missing number, return the entire ratio as a strin
 Returns result without a newline at the end. Useful for piping into other programs.
 
 For example, copying the result to the clipboard on OS X:
-g
+
 ```
 ~ python ratio-calculator.py 12 345 x 678 -n | pbcopy
 ```
