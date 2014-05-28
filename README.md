@@ -27,6 +27,14 @@ Returns:
 
 Round the result to `[number]` decimal places. Default: 2
 
+```
+~ python ratio-calculator.py 12 345 x 678
+23.58
+
+~ python ratio-calculator.py 12 345 x 678 -r 6
+23.582609
+```
+
 #### -v, --verbose
 
 Instead of just returning the missing number, return the entire ratio as a string with the missing number plugged in.
@@ -39,6 +47,12 @@ Instead of just returning the missing number, return the entire ratio as a strin
 #### -n, --without_newline
 
 Returns result without a newline at the end. Useful for piping into other programs.
+
+For example, copying the result to the clipboard on OS X:
+
+```
+~ python ratio-calculator.py 12 345 x 678 -n | pbcopy
+```
 
 
 ## Copy to Clipboard
