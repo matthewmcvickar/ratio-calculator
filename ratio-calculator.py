@@ -79,7 +79,7 @@ if missing_number is 'd':
     result = remove_trailing_zero(round_to_specified_decimal(result))
     verbose_result = a + '/' + b + ' = ' + c + '/' + '[' + str(result) + ']'
 
-# If the simple flag is turned on, return the result without a newline.
+# If the --without_newline flag is turned on, return the result without a newline.
 def print_with_or_without_newline(data):
     if arguments.without_newline:
         sys.stdout.write(data)
