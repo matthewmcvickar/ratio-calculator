@@ -25,10 +25,10 @@ Two decimal places are included in default usage. Trailing zeroes and decimal po
 Round the result to `[number]` decimal places. Default: 2
 
 ```
-~ python ratio-calculator.py 12 345 x 678
+~ python ratio-calculator.py 12 345 ? 678
 23.58
 
-~ python ratio-calculator.py 12 345 x 678 -r 6
+~ python ratio-calculator.py 12 345 ? 678 -r 6
 23.582609
 ```
 
@@ -59,7 +59,7 @@ Returns result without a newline at the end. Useful for piping into other progra
 For example, copying the result to the clipboard on OS X:
 
 ```
-~ python ratio-calculator.py 12 345 x 678 -n | pbcopy
+~ python ratio-calculator.py 2 4 ? 10 -n | pbcopy
 ```
 
 
