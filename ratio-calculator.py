@@ -2,6 +2,7 @@
 
 import argparse
 import sys
+import re
 
 # Set up and parse arguments.
 parser = argparse.ArgumentParser(description='Calculate the missing number in a ratio equation.')
@@ -34,21 +35,7 @@ parser.add_argument('-n',
 arguments = parser.parse_args()
 
 # Extract numbers from arguments.
-numbers = { 'a' : arguments.numbers[0],
-            'b' : arguments.numbers[1],
-            'c' : arguments.numbers[2],
-            'd' : arguments.numbers[3] }
-
-# Shorter variables for readability in equations.
-a = numbers['a']
-b = numbers['b']
-c = numbers['c']
-d = numbers['d']
-
-# Find which of the four numbers is missing.
-for key, value in numbers.items():
-    if value == '?' or value == 'x':
-        missing_number = key
+a, b, c, d = arguments.numbers
 
 # Round to the decimal specified in the argument.
 def round_to_specified_decimal(number):
@@ -58,26 +45,32 @@ def round_to_specified_decimal(number):
 def remove_trailing_zero(number):
     return str(number).rstrip('0').rstrip('.')
 
-# Perform the appropriate calculation.
-if missing_number is 'a':
-    result = float(b)*(float(c)/float(d))
-    result = remove_trailing_zero(round_to_specified_decimal(result))
-    verbose_result = '[' + str(result) + ']' + '/' + b + ' = ' + c + '/' + d
+# Find which of the four numbers is missing.
+for index, number in enumerate(arguments.numbers):
 
-if missing_number is 'b':
-    result = float(a)/(float(c)/float(d))
-    result = remove_trailing_zero(round_to_specified_decimal(result))
-    verbose_result = a + '/' + '[' + str(result) + ']' + ' = ' + c + '/' + d
+    # Check for which part of the series isn't a number.
+    if not re.search('[0-9]+', number, re.M):
 
-if missing_number is 'c':
-    result = float(d)*(float(a)/float(b))
-    result = remove_trailing_zero(round_to_specified_decimal(result))
-    verbose_result = a + '/' + b + ' = ' + '[' + str(result) + ']' + '/' + d
+        # Perform the appropriate calculation.
+        if index == 0:
+            result = float(b)*(float(c)/float(d))
+            result = remove_trailing_zero(round_to_specified_decimal(result))
+            verbose_result = '[' + str(result) + ']' + '/' + b + ' = ' + c + '/' + d
 
-if missing_number is 'd':
-    result = float(c)/(float(a)/float(b))
-    result = remove_trailing_zero(round_to_specified_decimal(result))
-    verbose_result = a + '/' + b + ' = ' + c + '/' + '[' + str(result) + ']'
+        elif index == 1:
+            result = float(a)/(float(c)/float(d))
+            result = remove_trailing_zero(round_to_specified_decimal(result))
+            verbose_result = a + '/' + '[' + str(result) + ']' + ' = ' + c + '/' + d
+
+        elif index == 2:
+            result = float(d)*(float(a)/float(b))
+            result = remove_trailing_zero(round_to_specified_decimal(result))
+            verbose_result = a + '/' + b + ' = ' + '[' + str(result) + ']' + '/' + d
+
+        elif index == 3:
+            result = float(c)/(float(a)/float(b))
+            result = remove_trailing_zero(round_to_specified_decimal(result))
+            verbose_result = a + '/' + b + ' = ' + c + '/' + '[' + str(result) + ']'
 
 # If the --without_newline flag is turned on, return the result without a newline.
 def print_with_or_without_newline(data):
