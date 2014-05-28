@@ -68,13 +68,14 @@ For example, copying the result to the clipboard on OS X:
 Use the `--without_newline` flag to remove the newline that would otherwise be printed to the terminal, then pipe the result to `pbcopy` to copy the result to your clipboard, ready for pasting. (This only works on OS X.)
 
 ```
-python ratio-calculator.py --without_newline 2 4 ? 10 | pbcopy
+~ python ratio-calculator.py --without_newline 2 4 ? 10 | pbcopy
 ```
 
 If you want to see the result as well as copy to the clipboard ([source](http://stackoverflow.com/questions/5677201)):
 
 ```
-python ratio-calculator.py --without_newline 2 4 ? 10 | tee /dev/tty | pbcopy
+~ python ratio-calculator.py --without_newline 2 4 ? 10 | pbcopy | tee /dev/tty
+5
 ```
 
 ## Thanks
