@@ -11,7 +11,7 @@ parser.add_argument('numbers',
                     metavar='N',
                     type=str,
                     nargs='+',
-                    help='An integer in the ratio equation. There must be three numbers and either an x or a ? in the set to calculate the missing value. E.g.: 2 4 ? 10')
+                    help='A string containing three numbers and a non-number (e.g., x or ?) that represents a ratio calculation in the form of a/b = c/d. E.g.: 2 4 ? 10')
 
 parser.add_argument('-r',
                     '--round',
