@@ -2,7 +2,7 @@
 
 Need to find the missing value in a ratio? This Python script will help you do that quickly.
 
-The current implementation of this script is an [identical working version written in Ruby](../).
+The current implementation of this script is an [identical working version written in Ruby](../../../).
 
 ## Usage
 
