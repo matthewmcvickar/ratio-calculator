@@ -51,7 +51,7 @@ end
 # Get options.
 opt_parser.parse!
 
-# Extract numbers from arguments and cast them to integers.
+# Extract numbers from arguments remaining after the options specified above.
 a, b, c, d = ARGV
 
 # Round to the decimal specified in the argument.
@@ -114,12 +114,12 @@ for index, number in ARGV
   end
 end
 
-# If the --without_newline flag is turned on, return the result without a newline using sys.stdout.
+# If the --without_newline flag is turned on, return the result without a newline using `print` instead of `puts`.
 def print_with_or_without_newline(data)
   if options[:without_newline]
-    p data
+    print data
   else
-    p data
+    puts data
   end
 end
 
