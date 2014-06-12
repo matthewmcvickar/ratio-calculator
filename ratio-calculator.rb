@@ -3,62 +3,61 @@
 require 'optparse'
 
 # Declare option defaults.
-options                 = {}
-options.round           = 2
-options.empty_decimals  = false
-options.verbose         = false
-options.without_newline = false
+options                   = {}
+options[:round]           = 2
+options[:empty_decimals]  = false
+options[:verbose]         = false
+options[:without_newline] = false
 
 # Set up options.
-OptionParser.new do |opts|
-  opts.banner = 'Calculate the missing number in a ratio equation.'
+opt_parser = OptionParser.new do |opt|
+  opt.banner = 'Calculate the missing number in a ratio equation.'
 
-  opts.separator ''
-  opts.separator 'Usage: ratio-calculator.rb [options] 2 4 ? 10'
+  opt.separator ''
+  opt.separator 'Usage: ratio-calculator.rb [options] 2 4 ? 10'
 
-  opts.separator ''
-  opts.separator 'Specific options:'
+  opt.separator ''
+  opt.separator 'Specific options:'
 
-  opts.on('numbers N',
+  opt.on('numbers N',
           'An integer in the ratio equation. There must be three numbers and either an x or a ? in the set to calculate the missing value. E.g.: 2 4 ? 10') do |numbers|
-    options.numbers = numbers
+    options[:numbers] = numbers
   end
 
-  opts.on('-r N',
+  opt.on('-r N',
           '--round N',
           Integer,
           'How many decimal places to which the result will be rounded (up). Default: 2') do |n|
-    options.round = n
+    options[:round] = n
   end
 
-  opts.on('-d',
+  opt.on('-d',
           '--empty_decimals',
           'Includes the decimal point and trailing zeroes in an integer. Off by default. E.g.: 5.00.') do |d|
-    options.empty_decimals = d
+    options[:empty_decimals] = d
   end
 
-  opts.on('-v',
+  opt.on('-v',
           '--verbose',
           'Returns ratio equation with missing ratio highlighted, instead of just missing number. E.g.: 1/2 [2]/4') do |v|
-    options.verbose = v
+    options[:verbose] = v
   end
 
-  opts.on('-w',
+  opt.on('-w',
           '--without_newline',
           'Returns result without a newline at the end. Useful for piping into other programs.') do |w|
   end
 
-  opts.on_tail('-h', '--help', 'Show this message') do
+  opt.on_tail('-h', '--help', 'Show this message') do
     puts opts
     exit
   end
-
-  opt_parser.parse!(args)
-  options
 end
 
+opt_parser.parse!
+
 # Extract numbers from arguments.
-a, b, c, d = options.numbers.each
+a, b, c, d = options[:numbers].each
 
 # Round to the decimal specified in the argument.
 def round_to_specified_decimal(number)
