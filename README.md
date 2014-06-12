@@ -52,7 +52,7 @@ Instead of just returning the missing number, return the entire ratio as a strin
 2/4 [5]/10
 ```
 
-#### -n, --without_newline
+#### -w, --without_newline
 
 Returns result without a newline at the end. Useful for piping into other programs.
 

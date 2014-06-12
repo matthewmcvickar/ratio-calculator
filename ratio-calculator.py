@@ -33,7 +33,7 @@ parser.add_argument('-v',
                     default=False,
                     help='Returns ratio equation with missing ratio highlighted, instead of just missing number. E.g.: 1/2 [2]/4')
 
-parser.add_argument('-n',
+parser.add_argument('-w',
                     '--without_newline',
                     action='store_true',
                     default=False,
