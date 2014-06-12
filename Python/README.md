@@ -1,12 +1,13 @@
-# ratio-calculator.py
-
-Need to find the missing value in a ratio? This Python script will help you do that quickly.
-
 ---
 
 **PLEASE NOTE:** Though this script works perfectly as is, it is no longer maintained. The current implementation of this script is a [functionally identical version written in Ruby](../../../).
 
 ---
+
+
+# ratio-calculator.py
+
+Need to find the missing value in a ratio? This Python script will help you do that quickly.
 
 ## Usage
 
