@@ -1,8 +1,8 @@
-# ratio-calculator.rb
+# ratio-calculator.py
 
-Need to find the missing value in a ratio? This script will help you do that quickly.
+Need to find the missing value in a ratio? This Python script will help you do that quickly.
 
-The current implementation of this script is written in Ruby, but there is an [identical working Python version](/Python) as well.
+The current implementation of this script is an [identical working version written in Ruby](../).
 
 ## Usage
 
@@ -13,7 +13,7 @@ Give numeric arguments in a series of three numbers with a `?`, `x`, or **any** 
 Solve for x: 2/4 = x/10
 
 ```
-~ ruby ratio-calculator.rb 2 4 ? 10
+~ python ratio-calculator.py 2 4 ? 10
 5
 ```
 
@@ -26,10 +26,10 @@ Two decimal places are included in default usage. Trailing zeroes and decimal po
 Round the result to `[number]` decimal places. Default: 2
 
 ```
-~ ruby ratio-calculator.rb 12 345 ? 678
+~ python ratio-calculator.py 12 345 ? 678
 23.58
 
-~ ruby ratio-calculator.rb 12 345 ? 678 -r 6
+~ python ratio-calculator.py 12 345 ? 678 -r 6
 23.582609
 ```
 
@@ -40,7 +40,7 @@ By default, integers are returned without a decimal point and two trailing zeroe
 Use this flag if you *want* two empty decimal places to be returned.
 
 ```
-~ ruby ratio-calculator.rb 2 4 ? 10 -d
+~ python ratio-calculator.py 2 4 ? 10 -d
 5.00
 ```
 
@@ -49,7 +49,7 @@ Use this flag if you *want* two empty decimal places to be returned.
 Instead of just returning the missing number, return the entire ratio as a string with the missing number plugged in.
 
 ```
-~ ruby ratio-calculator.rb -v 2 4 ? 10
+~ python ratio-calculator.py -v 2 4 ? 10
 2/4 [5]/10
 ```
 
@@ -60,7 +60,7 @@ Returns result without a newline at the end. Useful for piping into other progra
 For example, copying the result to the clipboard on OS X:
 
 ```
-~ ruby ratio-calculator.rb 2 4 ? 10 -n | pbcopy
+~ python ratio-calculator.py 2 4 ? 10 -n | pbcopy
 ```
 
 
@@ -69,13 +69,13 @@ For example, copying the result to the clipboard on OS X:
 Use the `--without_newline` flag to remove the newline that would otherwise be printed to the terminal, then pipe the result to `pbcopy` to copy the result to your clipboard, ready for pasting. (This only works on OS X.)
 
 ```
-~ ruby ratio-calculator.rb --without_newline 2 4 ? 10 | pbcopy
+~ python ratio-calculator.py --without_newline 2 4 ? 10 | pbcopy
 ```
 
 If you want to see the result as well as copy to the clipboard ([source](http://stackoverflow.com/questions/5677201)):
 
 ```
-~ ruby ratio-calculator.rb --without_newline 2 4 ? 10 | pbcopy | tee /dev/tty
+~ python ratio-calculator.py --without_newline 2 4 ? 10 | pbcopy | tee /dev/tty
 5
 ```
 
