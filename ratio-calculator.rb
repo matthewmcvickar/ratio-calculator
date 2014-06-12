@@ -56,30 +56,30 @@ a, b, c, d = ARGV
 
 # Round to the decimal specified in the argument.
 def round_to_specified_decimal(number)
-  result = sprintf('%.' + $options[:round] + 'f', number)
+  result = sprintf('%.' + $options[:round].to_s + 'f', number)
 
   # Remove trailing zero and decimal if it's just an integer, unless otherwise flagged.
   if $options[:empty_decimals]
     return result
   else
-    return result.rstrip('0').rstrip('.')
+    return result.chomp('.00')
   end
 end
 
 # Calculate value of missing number.
 def calculate_ratio_via_multiplication(x, y, z)
-  result = float(x)*(float(y)/float(z))
+  result = x.to_f*(y.to_f/z.to_f)
   return round_to_specified_decimal(result)
 end
 
 def calculate_ratio_via_division(x, y, z)
-  result = float(x)/(float(y)/float(z))
+  result = x.to_f/(y.to_f/z.to_f)
   return round_to_specified_decimal(result)
 end
 
 # Add brackets around text.
 def bracket(text)
-  return '[' + str(text) + ']'
+  return '[' + text.to_s + ']'
 end
 
 # Return the equation with the result included (in brackets).
@@ -87,8 +87,11 @@ def verbose_result(w, x, y, z)
   return w + '/' + x + ' = ' + y + '/' + z
 end
 
+result         = nil
+verbose_result = ''
+
 # Find which of the four numbers is missing.
-ARGV.each_with_index do |index, number|
+ARGV.each_with_index do |number, index|
 
   # Check for which part of the series isn't a number.
   if not (/[0-9]+/).match(number.to_s)
@@ -114,12 +117,8 @@ ARGV.each_with_index do |index, number|
   end
 end
 
-# Print the results to the screen.
-if $options[:verbose]
-  print_with_or_without_newline(verbose_result)
-else
-  print_with_or_without_newline(result)
-end
+# p result
+# p verbose_result
 
 # If the --without_newline flag is turned on, return the result without a newline using `print` instead of `puts`.
 def print_with_or_without_newline(data)
@@ -128,4 +127,11 @@ def print_with_or_without_newline(data)
   else
     puts data
   end
+end
+
+# Print the results to the screen.
+if $options[:verbose]
+  print_with_or_without_newline(verbose_result)
+else
+  print_with_or_without_newline(result)
 end
