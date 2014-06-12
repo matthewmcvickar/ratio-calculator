@@ -48,10 +48,11 @@ opt_parser = OptionParser.new do |opt|
   end
 end
 
+# Get options.
 opt_parser.parse!
 
-# Extract numbers from arguments.
-a, b, c, d = ARGV.collect(&:to_i)
+# Extract numbers from arguments and cast them to integers.
+a, b, c, d = ARGV
 
 # Round to the decimal specified in the argument.
 def round_to_specified_decimal(number)
