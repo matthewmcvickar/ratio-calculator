@@ -3,11 +3,11 @@
 require 'optparse'
 
 # Declare option defaults.
-options                   = {}
-options[:round]           = 2
-options[:empty_decimals]  = false
-options[:verbose]         = false
-options[:without_newline] = false
+$options                   = {}
+$options[:round]           = 2
+$options[:empty_decimals]  = false
+$options[:verbose]         = false
+$options[:without_newline] = false
 
 # Set up options.
 opt_parser = OptionParser.new do |opt|
@@ -25,17 +25,17 @@ opt_parser = OptionParser.new do |opt|
 
   opt.on('-r N', '--round N',
          'How many decimal places to which the result will be rounded (up). Default: 2') do |n|
-    options[:round] = n
+    $options[:round] = n
   end
 
   opt.on('-d', '--empty_decimals',
          'Includes the decimal point and trailing zeroes in an integer. Off by default. E.g.: 5.00.') do |d|
-    options[:empty_decimals] = d
+    $options[:empty_decimals] = d
   end
 
   opt.on('-v', '--verbose',
          'Returns ratio equation with missing ratio highlighted, instead of just missing number. E.g.: 1/2 [2]/4') do |v|
-    options[:verbose] = v
+    $options[:verbose] = v
   end
 
   opt.on('-w', '--without_newline',
@@ -56,10 +56,10 @@ a, b, c, d = ARGV
 
 # Round to the decimal specified in the argument.
 def round_to_specified_decimal(number)
-  result = sprintf('%.' + options[:round] + 'f', number)
+  result = sprintf('%.' + $options[:round] + 'f', number)
 
   # Remove trailing zero and decimal if it's just an integer, unless otherwise flagged.
-  if options[:empty_decimals]
+  if $options[:empty_decimals]
     return result
   else
     return result.rstrip('0').rstrip('.')
@@ -116,7 +116,7 @@ end
 
 # If the --without_newline flag is turned on, return the result without a newline using `print` instead of `puts`.
 def print_with_or_without_newline(data)
-  if options[:without_newline]
+  if $options[:without_newline]
     print data
   else
     puts data
@@ -125,7 +125,7 @@ end
 
 # Print the results to the screen.
 def print_result(just_the_missing_number, the_entire_equation)
-  if options[:verbose]
+  if $options[:verbose]
     print_with_or_without_newline(the_entire_equation)
   else
     print_with_or_without_newline(just_the_missing_number)
