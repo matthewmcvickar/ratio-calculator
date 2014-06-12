@@ -117,9 +117,6 @@ ARGV.each_with_index do |number, index|
   end
 end
 
-# p result
-# p verbose_result
-
 # If the --without_newline flag is turned on, return the result without a newline using `print` instead of `puts`.
 def print_with_or_without_newline(data)
   if $options[:without_newline]
