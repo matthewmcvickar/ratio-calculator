@@ -1,9 +1,6 @@
----
-
+===
 **PLEASE NOTE:** Though this script works perfectly as is, it is no longer maintained. The current implementation of this script is a [functionally identical version written in Ruby](../../../).
-
----
-
+===
 
 # ratio-calculator.py
 
