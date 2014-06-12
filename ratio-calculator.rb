@@ -88,10 +88,10 @@ def verbose_result(w, x, y, z)
 end
 
 # Find which of the four numbers is missing.
-for index, number in ARGV
+ARGV.each_with_index do |index, number|
 
   # Check for which part of the series isn't a number.
-  if not (/[0-9]+/).match(number)
+  if not (/[0-9]+/).match(number.to_s)
 
     # Perform the appropriate calculation.
     if index == 0
@@ -114,6 +114,13 @@ for index, number in ARGV
   end
 end
 
+# Print the results to the screen.
+if $options[:verbose]
+  print_with_or_without_newline(verbose_result)
+else
+  print_with_or_without_newline(result)
+end
+
 # If the --without_newline flag is turned on, return the result without a newline using `print` instead of `puts`.
 def print_with_or_without_newline(data)
   if $options[:without_newline]
@@ -122,14 +129,3 @@ def print_with_or_without_newline(data)
     puts data
   end
 end
-
-# Print the results to the screen.
-def print_result(just_the_missing_number, the_entire_equation)
-  if $options[:verbose]
-    print_with_or_without_newline(the_entire_equation)
-  else
-    print_with_or_without_newline(just_the_missing_number)
-  end
-end
-
-print_result(result, verbose_result)
