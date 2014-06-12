@@ -60,7 +60,7 @@ Returns result without a newline at the end. Useful for piping into other progra
 For example, copying the result to the clipboard on OS X:
 
 ```
-~ ruby ratio-calculator.rb 2 4 ? 10 -n | pbcopy
+~ ruby ratio-calculator.rb 2 4 ? 10 -w | pbcopy
 ```
 
 
