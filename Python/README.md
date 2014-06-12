@@ -65,7 +65,7 @@ Returns result without a newline at the end. Useful for piping into other progra
 For example, copying the result to the clipboard on OS X:
 
 ```
-~ python ratio-calculator.py 2 4 ? 10 -n | pbcopy
+~ python ratio-calculator.py 2 4 ? 10 -w | pbcopy
 ```
 
 
