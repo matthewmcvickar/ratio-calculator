@@ -2,7 +2,7 @@
 
 Need to find the missing value in a ratio? This script will help you do that quickly.
 
-[Ratio Calculator Alfred workflow](https://github.com/matthewmcvickar/alfred-ratio-calculator)
+**Note:** for convenience, I've made this into a [Ratio Calculator Alfred workflow](https://github.com/matthewmcvickar/alfred-ratio-calculator).
 
 ## Usage
 
