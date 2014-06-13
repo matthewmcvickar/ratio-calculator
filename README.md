@@ -2,7 +2,7 @@
 
 Need to find the missing value in a ratio? This script will help you do that quickly.
 
-The current implementation of this script is written in Ruby, but there is an [identical working Python version](/Python) as well.
+[Ratio Calculator Alfred workflow](https://github.com/matthewmcvickar/alfred-ratio-calculator)
 
 ## Usage
 
@@ -78,6 +78,15 @@ If you want to see the result as well as copy to the clipboard ([source](http://
 ~ ruby ratio-calculator.rb --without_newline 2 4 ? 10 | pbcopy | tee /dev/tty
 5
 ```
+
+---
+
+## See Also
+
+I've written a [Ratio Calculator Alfred workflow](https://github.com/matthewmcvickar/alfred-ratio-calculator) that uses this script. It is the most convenient application for me.
+
+The current implementation of this script is written in Ruby, but there is an [identical working Python version](/Python) as well.
+
 
 ## Thanks
 
